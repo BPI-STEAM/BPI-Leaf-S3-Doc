@@ -2,6 +2,8 @@
 
 我们可以从输出一段“Hello World”文字开始，以此作为了解和学习MicroPython的第一步。
 
+> 本文所述操作基于Thonny IDE，需要先完成对Thonny IDE的配置，与开发板建立连接。
+
 ## 使用REPL
 
 **REPL**即**Read-Eval-Print-Loop**的缩写名词，译为 **读取-求值-输出-循环**。

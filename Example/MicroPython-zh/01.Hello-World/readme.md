@@ -2,7 +2,7 @@
 
 我们可以从输出一段“Hello World”文字开始，以此作为了解和学习MicroPython的第一步。
 
-> 本文所述操作基于Thonny IDE，需要先完成对Thonny IDE的配置，与开发板建立连接。
+> 本文所述操作基于Thonny IDE，需要先完成对Thonny IDE的配置，与开发板建立连接。[Thonny IDE运行环境搭建参见wiki](https://wiki.banana-pi.org/Micropython_%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。
 
 ## 使用REPL
 

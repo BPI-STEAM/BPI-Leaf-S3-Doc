@@ -6,4 +6,6 @@
 
 [02.PWM 单色LED呼吸灯](/Example/MicroPython-zh/02.Use_Peripherals/02.PWM)
 
-[03.ADC 读取电位器的电压值](/Example/MicroPython-zh/02.Use_Peripherals/02.ADC)
+[03.ADC 读取电位器的电压值](/Example/MicroPython-zh/02.Use_Peripherals/03.ADC)
+
+[04.UART 串口数据读写](/Example/MicroPython-zh/02.Use_Peripherals/04.UART)

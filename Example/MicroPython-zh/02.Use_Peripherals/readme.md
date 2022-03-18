@@ -5,3 +5,5 @@
 [01.全彩LED灯珠循环显示彩虹色](/Example/MicroPython-zh/02.Use_Peripherals/01.rainbow_NeoPixel_LED)
 
 [02.PWM 单色LED呼吸灯](/Example/MicroPython-zh/02.Use_Peripherals/02.PWM)
+
+[03.ADC 读取电位器的电压值](/Example/MicroPython-zh/02.Use_Peripherals/02.ADC)

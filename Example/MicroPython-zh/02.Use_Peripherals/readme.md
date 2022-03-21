@@ -9,3 +9,5 @@
 [03.ADC 读取电位器的电压值](/Example/MicroPython-zh/02.Use_Peripherals/03.ADC)
 
 [04.UART 串口数据读写](/Example/MicroPython-zh/02.Use_Peripherals/04.UART)
+
+[05.SPI MAX7219 8X8LED点阵显示](/Example/MicroPython-zh/02.Use_Peripherals/)

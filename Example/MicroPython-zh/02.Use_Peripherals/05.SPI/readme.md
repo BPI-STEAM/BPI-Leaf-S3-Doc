@@ -14,4 +14,6 @@ MAX7219的VCC接Leaf-S3的3V3，GND接GND，DIN接GPIO10，CS接GPIO11，CLK接G
 
 ## 运行效果
 
+在运行 `05.SPI.py` 前确保 `max7219.py` 文件已上传至开发板，此文件为MAX7219的驱动模块。
+
 LED点阵将以0.5秒的时间间隔循环显示大写英文字母 A 至 Z 。

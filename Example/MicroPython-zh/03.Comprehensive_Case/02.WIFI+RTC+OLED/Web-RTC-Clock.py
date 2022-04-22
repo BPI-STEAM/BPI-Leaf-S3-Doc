@@ -4,7 +4,9 @@ from neopixel import NeoPixel
 import time,network
 import urequests
 rtc = RTC()
+print(rtc.datetime())
 Url = "http://worldtimeapi.org/api/timezone/Asia/Hong_Kong"
+week_list=["Mon.","Tue.","Wed.","Thu.","Fri.","Sat.","Sun."]
 
 sda_pin=Pin(15,Pin.PULL_UP)
 scl_pin=Pin(16,Pin.PULL_UP)
@@ -16,8 +18,8 @@ oled = SSD1306_I2C(128, 64, i2c, addr=0x3c)
 def display():
     datetime=rtc.datetime()
     oled.fill(0)
-    oled.text("Date:{0}/{1}/{2}".format(datetime[0],datetime[1],datetime[2]), 0,  0)
-    oled.text("Time:{0}:{1}:{2}".format(datetime[4],datetime[5],datetime[6]), 0,  8)
+    oled.text("{0}/{1:0>2d}/{2:0>2d}<{3}>".format(datetime[0],datetime[1],datetime[2],week_list[datetime[3]]), 0,  0)
+    oled.text("{0:0>2d}:{1:0>2d}:{2:0>2d}".format(datetime[4],datetime[5],datetime[6]), 32,  8)
     oled.show()
 
 def ConnectNet():
@@ -63,13 +65,14 @@ def net_rtc():
     year = int(datetime_str[0:4])
     month = int(datetime_str[5:7])
     day = int(datetime_str[8:10])
-    weekday=str(parsed["day_of_week"])
+    #weekday=str(parsed["day_of_week"])
     hour = int(datetime_str[11:13])
     minute = int(datetime_str[14:16])
     second = int(datetime_str[17:19])
     subsecond = int(round(int(datetime_str[20:26]) / 10000))
 
-    rtc.datetime((year, month, day, weekday, hour, minute, second, subsecond))
+    rtc.datetime((year, month, day, 0, hour, minute, second, subsecond))
+    print(rtc.datetime())
     print("RTC updated\n")
 
 ConnectNet()

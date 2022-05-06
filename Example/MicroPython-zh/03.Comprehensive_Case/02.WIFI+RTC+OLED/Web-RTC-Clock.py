@@ -68,7 +68,7 @@ def net_rtc():
     print(requests.text)#Output all acquired information in text form
     parsed = requests.json()#Convert to json format for separating out the information
     datetime_str = str(parsed["datetime"])#Extract datetime information and save to variable as string format
-    year = int(datetime_str[0:4])#String slices and save to their corresponding variables
+    year = int(datetime_str[0:4])#The string is sliced and saved as an integer to the corresponding variable
     month = int(datetime_str[5:7])
     day = int(datetime_str[8:10])
     #weekday=str(parsed["day_of_week"])

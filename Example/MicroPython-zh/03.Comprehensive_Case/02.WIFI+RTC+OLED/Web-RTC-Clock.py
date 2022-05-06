@@ -3,10 +3,14 @@ from ssd1306 import SSD1306_I2C
 from neopixel import NeoPixel
 import time,network
 import urequests
-rtc = RTC()
-print(rtc.datetime())
+
+SSID = "wifi-ssid"
+PASSWORD = "wifi-password"
 Url = "http://worldtimeapi.org/api/timezone/Asia/Hong_Kong"
 week_list=["Mon.","Tue.","Wed.","Thu.","Fri.","Sat.","Sun."]
+
+rtc = RTC()
+print(rtc.datetime())
 
 sda_pin=Pin(15,Pin.PULL_UP)
 scl_pin=Pin(16,Pin.PULL_UP)
@@ -23,16 +27,16 @@ def display():
     oled.show()
 
 def ConnectNet():
-    pin_48 = Pin(48, Pin.OUT)#将GPIO48作为WS2812的信号传输线
+    pin_48 = Pin(48, Pin.OUT)#Use GPIO48 as the signal line of WS2812
     np = NeoPixel(pin_48, 1,bpp=3, timing=1)
     np[0] = (25,0,0)
     np.write()
     try:
-        wifi = network.WLAN(network.STA_IF)#创建网络接口
-        wifi.active(True)#激活接口
-        print(wifi.scan())#输出扫描到的SSID
+        wifi = network.WLAN(network.STA_IF)#Create a network interface
+        wifi.active(True)#activate interface
+        print(wifi.scan())#Output scanned SSID
         if not wifi.isconnected():
-            wifi.connect('BPI','12345678')#连接指定SSID，在此输入SSID及其密码
+            wifi.connect(SSID,PASSWORD)#Connect to the specified SSID
             print('start to connect wifi')
             oled.text("WiFi connect", 0,  0)
             oled.show()
@@ -48,21 +52,23 @@ def ConnectNet():
             np[0] = (0,25,0)
             np.write()
             print('WiFi connection OK!')
-            print('Network Config=',wifi.ifconfig())#获取并输出接口的IP地址/netmask子网掩码/gw网关/DNS地址
+            print('Network Config=',wifi.ifconfig())#Get and print the  IP address, subnet mask, gateway and DNS server.
             oled.text("WiFi connect!IP:", 0,  0)
             oled.text("{}".format(wifi.ifconfig()[0]), 0,  8)
             oled.show()
             time.sleep_ms(1500)
+            np[0] = (0,0,0)
+            np.write()
         else:
             print('WiFi connection Error')
     except Exception as e: print(e)
 
 def net_rtc():
-    requests = urequests.get(Url)#打开网址获取信息
-    print(requests.text)#以文本形式输出所有获取到的信息
-    parsed = requests.json()
-    datetime_str = str(parsed["datetime"])
-    year = int(datetime_str[0:4])
+    requests = urequests.get(Url)#Open the URL to get information through the urequests module
+    print(requests.text)#Output all acquired information in text form
+    parsed = requests.json()#Convert to json format for separating out the information
+    datetime_str = str(parsed["datetime"])#Extract datetime information and save to variable as string format
+    year = int(datetime_str[0:4])#String slices and save to their corresponding variables
     month = int(datetime_str[5:7])
     day = int(datetime_str[8:10])
     #weekday=str(parsed["day_of_week"])
@@ -71,7 +77,7 @@ def net_rtc():
     second = int(datetime_str[17:19])
     subsecond = int(round(int(datetime_str[20:26]) / 10000))
 
-    rtc.datetime((year, month, day, 0, hour, minute, second, subsecond))
+    rtc.datetime((year, month, day, 0, hour, minute, second, subsecond))#Update internal RTC
     print(rtc.datetime())
     print("RTC updated\n")
 

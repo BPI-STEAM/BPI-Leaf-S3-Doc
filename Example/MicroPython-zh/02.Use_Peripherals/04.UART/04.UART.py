@@ -2,16 +2,18 @@ from machine import UART
 import time
 
 uart1 = UART(1, tx=17, rx=18)
-#选择UART接口，指定TX与RX使用的引脚
+# Select the UART interface and specify the pins used by TX and RX
 
 uart1.init(115200, bits=8, parity=None, stop=1)
-#初始化，设置波特率，设置字符位数，设置奇偶校验，设置停止位
+# Initialization, set the baud rate, set the number of characters, set the parity, set the stop bit
+
 
 def test():
     for i in range(50):
-        uart1.write('Hello World!')#写数据
+        uart1.write('Hello World!')  # write data
         time.sleep(0.5)
-        print(uart1.read())#读数据
+        print(uart1.read())  # read data
         time.sleep(0.5)
+
 
 test()
